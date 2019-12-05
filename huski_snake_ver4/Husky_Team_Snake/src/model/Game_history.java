@@ -3,8 +3,8 @@ package model;
 import java.util.Date;
 
 
-public class game_history {
-
+public class Game_history {
+	
 	private Date game_date;
 	private String total_Score;
 	private String number_of_questions;
@@ -51,7 +51,7 @@ public class game_history {
 	}
 	//******constructor**********//
 	private String game_number;
-	public game_history(String game_number, Date game_date, String total_Score, String number_of_questions,
+	public Game_history(String game_number, Date game_date, String total_Score, String number_of_questions,
 			String number_of_right_Answers, Player player) {
 		super();
 		this.game_number = game_number;

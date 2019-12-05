@@ -10,7 +10,6 @@ public class Player {
 	
 	//******constructor********///
 	public Player(String user_Name) {
-		super();
 		User_Name = user_Name;
 	}
 	//************Getters and Setters**********//

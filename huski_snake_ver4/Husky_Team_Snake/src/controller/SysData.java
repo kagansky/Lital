@@ -3,19 +3,46 @@ import java.io.FileReader;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
+
+import model.Player;
 import model.Question;
 
 
 public class SysData {
 	
-	
+	public static SysData single_instance = null; 
 	HashMap<String, Array[]>Questions;
+	HashSet<Player>players=new HashSet<Player>();
+	
+	/*
+	 * creating singleton show for the sysdata
+	 */
+	public static SysData getinstance()
+	{
+		 if (single_instance == null) 
+	            single_instance = new SysData(); 
+	  
+	        return single_instance;
+	}
+	
+	
+	public boolean add_new_player(String user_Name)
+	{
+		Player p=new Player(user_Name);
+		if(!(players.contains(p)))
+			{
+			players.add(p);
+			return true;
+			}
+         return false;
+	}
 	
 	public void initiateGame () {
 		
@@ -39,6 +66,8 @@ public class SysData {
 	public void selectQuestion   () {
 		
 	}
+	
+	
 	public void ReadJSONFile() {
 		Map<String, Question> quMap = new HashMap<>();
 		ArrayList<Question> questions = new ArrayList<>();
@@ -62,6 +91,7 @@ public class SysData {
 			Iterator<String> iterator2 = tempAnswers.iterator();
 			while (iterator2.hasNext())
 				answers.add(iterator2.next());
+			
 			questions.add(new Question(question, new ArrayList<>(answers), correctAnswer, team, level));
 			Question tempQ = new Question(question, new ArrayList<>(answers), correctAnswer, team, level);
 			quMap.put(question, tempQ);

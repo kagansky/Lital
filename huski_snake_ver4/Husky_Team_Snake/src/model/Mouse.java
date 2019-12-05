@@ -1,6 +1,6 @@
 package model;
 
-public class mouse extends Tile {
+public class Mouse extends Tile {
 	private int watiing_time=60;
 	private Direction currentDirection;
 	
